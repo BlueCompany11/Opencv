@@ -1,5 +1,5 @@
 #include "opencv2/highgui.hpp"
-
+#include<iostream>
 using namespace cv;
 
 int main(int argc, char** argv) {
@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 		if (!frame) break;
 		cvShowImage("Example2", frame);
 		char c = cvWaitKey(33);
-		if (c == 27) break;
+		if (c == 27) break;	//27==ESC ASCII
 	}
 	cvWaitKey(0);
 	cvReleaseImage(&img);

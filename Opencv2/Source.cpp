@@ -37,7 +37,6 @@ int main(int argc, char** argv) {
 		cvShowImage("Example3", frame);
 		char c = cvWaitKey(33);
 		if (c == 27) break;
-		
 	}
 	cvReleaseCapture(&g_capture);
 	cvDestroyWindow("Example3");

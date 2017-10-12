@@ -1,22 +1,33 @@
-#include "opencv2/highgui.hpp"
-#include"opencv/cv.h"
-#include<iostream>
-using namespace cv;
+/**
+* @function cornerDetector_Demo.cpp
+* @brief Demo code for detecting corners using OpenCV built-in functions
+* @author OpenCV team
+*/
 
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include"opencv\cv.h"
+#include <iostream>
+
+using namespace cv;
+using namespace std;
+
+void mouse_ev(int event, int x, int y, int flags, void* param) {
+	IplImage* img = ((IplImage*)param);
+	switch (event) {
+	case CV_EVENT_LBUTTONDBLCLK: cout << x << " " << y << endl;
+		break;
+	case CV_EVENT_RBUTTONDBLCLK: cout << "prawy" << endl;
+		break;
+	case CV_EVENT_MOUSEMOVE: cout << "poruszono myszka" << endl;
+		break;
+	}
+}
 int main(int argc, char** argv) {
-	try {
-		CvSize size = CvSize(720, 640);
-		IplImage* img = cvLoadImage(argv[1]);
-		IplImage* img2 = img; //cvCreateImage(size, 1, 3);
-		cvResize(img, img2);
-		cvNamedWindow("e2");
-		cvShowImage("e2", img);
-		cvNamedWindow("e1");
-		cvShowImage("e1", img2);
-	}
-	catch (const std::exception & e) {
-		std::cout << "Doesn't work : " << e.what();
-		system("pause");
-	}
-		cvWaitKey(0);
+	IplImage* lena = cvLoadImage(argv[1]);
+	cvNamedWindow("Test myszy", CV_WINDOW_AUTOSIZE);
+	cvShowImage("Test myszy", lena);
+	cvSetMouseCallback("Test myszy", mouse_ev, NULL);
+	cvWaitKey(0);
 }
